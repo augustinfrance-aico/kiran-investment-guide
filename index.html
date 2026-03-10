@@ -563,7 +563,7 @@ document.getElementById('lead-form').addEventListener('submit', async function(e
 
   try {
     // POST to n8n webhook — URL à remplacer après création du workflow
-    const res = await fetch('WEBHOOK_URL_PLACEHOLDER', {
+    const res = await fetch('https://augustin-aico.app.n8n.cloud/webhook/kiran-investment-guide', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
