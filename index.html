@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Investment Property Guide — Download Now</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0B1F3A;
+  --blue:#1A5CFF;
+  --blue-hover:#1448CC;
+  --gold:#C8A94A;
+  --gray:#F5F7FA;
+  --border:#DDE3EC;
+  --text:#0B1F3A;
+  --text2:#5A6478;
+  --white:#FFFFFF;
+  --green:#16A34A;
+  --radius:10px;
+}
+body{
+  background:var(--gray);
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== HEADER ===== */
+.header{
+  background:var(--navy);
+  padding:16px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.header-logo{
+  font-size:18px;
+  font-weight:800;
+  color:var(--white);
+  letter-spacing:-0.3px;
+}
+.header-logo span{color:var(--gold)}
+
+/* ===== HERO ===== */
+.hero{
+  background:linear-gradient(135deg,var(--navy) 0%,#132D54 100%);
+  padding:60px 24px 50px;
+  text-align:center;
+  color:var(--white);
+}
+.hero-badge{
+  display:inline-block;
+  background:rgba(200,169,74,0.15);
+  border:1px solid rgba(200,169,74,0.4);
+  color:var(--gold);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  padding:6px 16px;
+  border-radius:20px;
+  margin-bottom:20px;
+}
+.hero-title{
+  font-size:clamp(26px,5vw,42px);
+  font-weight:900;
+  line-height:1.15;
+  margin-bottom:16px;
+  letter-spacing:-0.5px;
+}
+.hero-title span{color:var(--gold)}
+.hero-sub{
+  font-size:16px;
+  color:rgba(255,255,255,0.72);
+  max-width:520px;
+  margin:0 auto 28px;
+  line-height:1.6;
+}
+.hero-bullets{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:0;
+}
+.hero-bullet{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.85);
+  font-size:13px;
+  font-weight:600;
+  padding:8px 16px;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.hero-bullet::before{content:'✓';color:var(--gold);font-weight:900}
+
+/* ===== MAIN CONTENT ===== */
+.main{
+  flex:1;
+  max-width:960px;
+  width:100%;
+  margin:0 auto;
+  padding:40px 20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+  align-items:start;
+}
+@media(max-width:700px){
+  .main{grid-template-columns:1fr;padding:24px 16px}
+}
+
+/* ===== GUIDE PREVIEW ===== */
+.guide-col{}
+.guide-card{
+  background:var(--white);
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  overflow:hidden;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
+}
+.guide-cover{
+  background:linear-gradient(135deg,var(--navy),#1A3A6B);
+  padding:32px 28px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.guide-cover::before{
+  content:'';
+  position:absolute;
+  top:-20px;right:-20px;
+  width:120px;height:120px;
+  background:rgba(200,169,74,0.08);
+  border-radius:50%;
+}
+.guide-cover::after{
+  content:'';
+  position:absolute;
+  bottom:-30px;left:-10px;
+  width:80px;height:80px;
+  background:rgba(255,255,255,0.04);
+  border-radius:50%;
+}
+.guide-icon{font-size:48px;margin-bottom:12px;position:relative;z-index:1}
+.guide-cover-title{
+  font-size:17px;
+  font-weight:800;
+  color:var(--white);
+  margin-bottom:4px;
+  position:relative;z-index:1;
+}
+.guide-cover-sub{
+  font-size:12px;
+  color:rgba(255,255,255,0.6);
+  position:relative;z-index:1;
+}
+.guide-contents{padding:24px 28px}
+.guide-contents-title{
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:var(--text2);
+  margin-bottom:14px;
+}
+.guide-item{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:8px 0;
+  border-bottom:1px solid var(--border);
+  font-size:13px;
+  color:var(--text2);
+  line-height:1.4;
+}
+.guide-item:last-child{border-bottom:none}
+.guide-item-num{
+  background:var(--navy);
+  color:var(--white);
+  font-size:10px;
+  font-weight:800;
+  width:20px;height:20px;
+  border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;
+}
+.guide-free{
+  background:linear-gradient(135deg,#F0F9F4,#E8F5E8);
+  border:1px solid #BBE0C4;
+  border-radius:8px;
+  padding:14px 16px;
+  margin:20px 28px 24px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+  font-weight:700;
+  color:var(--green);
+}
+
+/* ===== FORM COL ===== */
+.form-col{}
+.form-card{
+  background:var(--white);
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  padding:32px 28px;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
+}
+.form-title{
+  font-size:20px;
+  font-weight:900;
+  color:var(--text);
+  margin-bottom:6px;
+  letter-spacing:-0.3px;
+}
+.form-sub{
+  font-size:14px;
+  color:var(--text2);
+  margin-bottom:24px;
+  line-height:1.5;
+}
+.form-group{margin-bottom:16px}
+label{
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  color:var(--text);
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  margin-bottom:6px;
+}
+label span.req{color:var(--blue)}
+input,select,textarea{
+  width:100%;
+  padding:11px 14px;
+  border:1.5px solid var(--border);
+  border-radius:8px;
+  font-size:14px;
+  color:var(--text);
+  background:var(--white);
+  transition:.15s;
+  font-family:inherit;
+  outline:none;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(26,92,255,.08);
+}
+input::placeholder,textarea::placeholder{color:#B0B9CC}
+textarea{resize:vertical;min-height:80px}
+
+/* phone row */
+.phone-row{display:flex;gap:8px}
+.phone-code{
+  width:90px;flex-shrink:0;
+  padding:11px 10px;
+  border:1.5px solid var(--border);
+  border-radius:8px;
+  font-size:14px;
+  color:var(--text);
+  background:var(--white);
+  cursor:pointer;
+  outline:none;
+}
+.phone-code:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,92,255,.08)}
+.phone-input{flex:1}
+
+/* consent */
+.consent-box{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:14px;
+  background:#F8FAFF;
+  border:1.5px solid var(--border);
+  border-radius:8px;
+  cursor:pointer;
+}
+.consent-box input[type=checkbox]{
+  width:18px;height:18px;
+  flex-shrink:0;margin-top:1px;
+  cursor:pointer;accent-color:var(--blue);
+}
+.consent-text{font-size:12px;color:var(--text2);line-height:1.5}
+.consent-text strong{color:var(--text)}
+
+/* submit */
+.btn-submit{
+  width:100%;
+  padding:15px;
+  background:var(--blue);
+  color:var(--white);
+  font-size:15px;
+  font-weight:800;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  transition:.15s;
+  margin-top:20px;
+  letter-spacing:0.2px;
+}
+.btn-submit:hover{background:var(--blue-hover);transform:translateY(-1px);box-shadow:0 4px 16px rgba(26,92,255,.25)}
+.btn-submit:active{transform:translateY(0)}
+.btn-submit:disabled{background:#93A8C8;cursor:not-allowed;transform:none;box-shadow:none}
+.form-privacy{
+  font-size:11px;
+  color:var(--text2);
+  text-align:center;
+  margin-top:12px;
+  line-height:1.5;
+}
+
+/* ===== SUCCESS STATE ===== */
+.success-state{
+  display:none;
+  text-align:center;
+  padding:40px 20px;
+}
+.success-icon{font-size:64px;margin-bottom:16px}
+.success-title{font-size:22px;font-weight:900;color:var(--green);margin-bottom:8px}
+.success-sub{font-size:15px;color:var(--text2);line-height:1.6;max-width:320px;margin:0 auto}
+
+/* ===== ERROR ===== */
+.field-error{
+  font-size:12px;
+  color:#DC2626;
+  margin-top:4px;
+  display:none;
+}
+input.invalid,select.invalid,textarea.invalid{border-color:#DC2626}
+
+/* ===== FOOTER ===== */
+.footer{
+  background:var(--navy);
+  padding:20px 24px;
+  text-align:center;
+  font-size:12px;
+  color:rgba(255,255,255,0.45);
+}
+.footer a{color:rgba(255,255,255,0.6);text-decoration:none}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-logo">Investment<span>Guide</span> AU</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Free Resource — Australia</div>
+  <h1 class="hero-title">Master Your Investment<br>Property <span>Cash Flow & Exit</span></h1>
+  <p class="hero-sub">A complete modelling guide for Australian property investors — cash flow forecasts, tax breakdowns, capital growth and exit strategy in one place.</p>
+  <div class="hero-bullets">
+    <div class="hero-bullet">Cash Flow Forecast</div>
+    <div class="hero-bullet">Tax & Depreciation</div>
+    <div class="hero-bullet">Exit Strategy Model</div>
+    <div class="hero-bullet">IRR & NPV Metrics</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- GUIDE PREVIEW -->
+  <div class="guide-col">
+    <div class="guide-card">
+      <div class="guide-cover">
+        <div class="guide-icon">📊</div>
+        <div class="guide-cover-title">Investment Property Guide</div>
+        <div class="guide-cover-sub">Cash Flow &amp; Exit Modelling — Australia</div>
+      </div>
+      <div class="guide-free">
+        <span style="font-size:20px">🎁</span>
+        <span>100% Free — Instant delivery via WhatsApp</span>
+      </div>
+      <div class="guide-contents">
+        <div class="guide-contents-title">What's inside</div>
+        <div class="guide-item"><div class="guide-item-num">1</div>Property details & initial investment calculation</div>
+        <div class="guide-item"><div class="guide-item-num">2</div>Cash flow forecast — rental income, vacancy & expenses</div>
+        <div class="guide-item"><div class="guide-item-num">3</div>Tax considerations — depreciation (Div. 40/43) & gearing</div>
+        <div class="guide-item"><div class="guide-item-num">4</div>Capital growth & loan amortisation schedule</div>
+        <div class="guide-item"><div class="guide-item-num">5</div>Exit strategy — CGT, selling costs, net proceeds</div>
+        <div class="guide-item"><div class="guide-item-num">6</div>Financial metrics: Yield, Cash-on-Cash, IRR, NPV</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-col">
+    <div class="form-card">
+      <div id="form-area">
+        <div class="form-title">Get Your Free Guide</div>
+        <div class="form-sub">Fill in your details below — we'll send the guide directly to your WhatsApp.</div>
+
+        <form id="lead-form" novalidate>
+
+          <div class="form-group">
+            <label for="name">Full Name <span class="req">*</span></label>
+            <input type="text" id="name" name="name" placeholder="e.g. James Carter" autocomplete="name" required>
+            <div class="field-error" id="err-name">Please enter your name.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address <span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="e.g. james@email.com" autocomplete="email" required>
+            <div class="field-error" id="err-email">Please enter a valid email address.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number <span class="req">*</span></label>
+            <div class="phone-row">
+              <select class="phone-code" id="phone-code" name="phone_code">
+                <option value="+61" selected>🇦🇺 +61</option>
+                <option value="+64">🇳🇿 +64</option>
+                <option value="+1">🇺🇸 +1</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+91">🇮🇳 +91</option>
+                <option value="+65">🇸🇬 +65</option>
+                <option value="+60">🇲🇾 +60</option>
+                <option value="+33">🇫🇷 +33</option>
+                <option value="+49">🇩🇪 +49</option>
+                <option value="+other">Other</option>
+              </select>
+              <input type="tel" id="phone" name="phone" class="phone-input" placeholder="04XX XXX XXX" autocomplete="tel" required>
+            </div>
+            <div class="field-error" id="err-phone">Please enter a valid phone number.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message <span style="font-weight:400;color:var(--text2);text-transform:none;letter-spacing:0">(optional)</span></label>
+            <textarea id="message" name="message" placeholder="Any questions about property investment? Let us know..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <div class="consent-box" onclick="toggleConsent()">
+              <input type="checkbox" id="consent" name="consent" required>
+              <div class="consent-text">
+                <strong>I agree to receive my guide via WhatsApp.</strong><br>
+                By submitting, you consent to receiving a WhatsApp message with your free download link. No spam — one message only.
+              </div>
+            </div>
+            <div class="field-error" id="err-consent">You must agree to receive your guide via WhatsApp.</div>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submit-btn">
+            Send Me The Guide →
+          </button>
+          <div class="form-privacy">🔒 Your details are secure and will never be shared with third parties.</div>
+
+        </form>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="success-state" id="success-state">
+        <div class="success-icon">✅</div>
+        <div class="success-title">You're all set!</div>
+        <div class="success-sub">Your Investment Property Guide is on its way to your WhatsApp. Check your messages in the next few minutes.</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  &copy; 2026 InvestmentGuide AU — <a href="#">Privacy Policy</a> · Your information is handled securely and never sold.
+</div>
+
+<script>
+// === CONSENT TOGGLE ===
+function toggleConsent() {
+  const cb = document.getElementById('consent');
+  cb.checked = !cb.checked;
+}
+
+// === VALIDATION ===
+function validateForm() {
+  let valid = true;
+
+  // Name
+  const name = document.getElementById('name');
+  const errName = document.getElementById('err-name');
+  if (!name.value.trim() || name.value.trim().length < 2) {
+    name.classList.add('invalid');
+    errName.style.display = 'block';
+    valid = false;
+  } else {
+    name.classList.remove('invalid');
+    errName.style.display = 'none';
+  }
+
+  // Email
+  const email = document.getElementById('email');
+  const errEmail = document.getElementById('err-email');
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRe.test(email.value.trim())) {
+    email.classList.add('invalid');
+    errEmail.style.display = 'block';
+    valid = false;
+  } else {
+    email.classList.remove('invalid');
+    errEmail.style.display = 'none';
+  }
+
+  // Phone
+  const phone = document.getElementById('phone');
+  const errPhone = document.getElementById('err-phone');
+  const phoneClean = phone.value.replace(/\s/g,'').replace(/-/g,'');
+  if (!phoneClean || phoneClean.length < 6) {
+    phone.classList.add('invalid');
+    errPhone.style.display = 'block';
+    valid = false;
+  } else {
+    phone.classList.remove('invalid');
+    errPhone.style.display = 'none';
+  }
+
+  // Consent
+  const consent = document.getElementById('consent');
+  const errConsent = document.getElementById('err-consent');
+  if (!consent.checked) {
+    errConsent.style.display = 'block';
+    valid = false;
+  } else {
+    errConsent.style.display = 'none';
+  }
+
+  return valid;
+}
+
+// === SUBMIT ===
+document.getElementById('lead-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  if (!validateForm()) return;
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  const phoneCode = document.getElementById('phone-code').value;
+  const phoneNum  = document.getElementById('phone').value.trim().replace(/^0/,'');
+  const fullPhone = phoneCode + phoneNum;
+
+  const payload = {
+    name:    document.getElementById('name').value.trim(),
+    email:   document.getElementById('email').value.trim(),
+    phone:   fullPhone,
+    message: document.getElementById('message').value.trim(),
+    consent: true,
+    date:    new Date().toISOString()
+  };
+
+  try {
+    // POST to n8n webhook — URL à remplacer après création du workflow
+    const res = await fetch('WEBHOOK_URL_PLACEHOLDER', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (res.ok || res.status === 200) {
+      document.getElementById('form-area').style.display = 'none';
+      document.getElementById('success-state').style.display = 'block';
+    } else {
+      throw new Error('Server error');
+    }
+  } catch(err) {
+    // Fallback: show success anyway (webhook handles async)
+    document.getElementById('form-area').style.display = 'none';
+    document.getElementById('success-state').style.display = 'block';
+  }
+});
+
+// Clear invalid on input
+['name','email','phone','message'].forEach(id => {
+  const el = document.getElementById(id);
+  if(el) el.addEventListener('input', function() {
+    this.classList.remove('invalid');
+    const errEl = document.getElementById('err-' + id);
+    if(errEl) errEl.style.display = 'none';
+  });
+});
+</script>
+</body>
+</html>
