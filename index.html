@@ -562,23 +562,24 @@ document.getElementById('lead-form').addEventListener('submit', async function(e
   };
 
   try {
-    // POST to n8n webhook — URL à remplacer après création du workflow
     const res = await fetch('https://augustin-aico.app.n8n.cloud/webhook/kiran-investment-guide', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
 
-    if (res.ok || res.status === 200) {
+    if (res.ok) {
       document.getElementById('form-area').style.display = 'none';
       document.getElementById('success-state').style.display = 'block';
     } else {
-      throw new Error('Server error');
+      btn.disabled = false;
+      btn.textContent = 'Send Me The Guide →';
+      alert('Something went wrong. Please try again in a moment.');
     }
   } catch(err) {
-    // Fallback: show success anyway (webhook handles async)
-    document.getElementById('form-area').style.display = 'none';
-    document.getElementById('success-state').style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Send Me The Guide →';
+    alert('Connection error. Please check your internet and try again.');
   }
 });
 
