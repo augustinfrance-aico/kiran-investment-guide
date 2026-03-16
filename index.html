@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Investment Property Guide — Download Now</title>
+<title>PropXcel — Free Property Investment Guide</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -98,7 +98,22 @@ body{
   align-items:center;
   gap:6px;
 }
-.hero-bullet::before{content:'✓';color:var(--gold);font-weight:900}
+.hero-bullet::before{content:none}
+
+/* ===== BODY SECTION ===== */
+.body-section{
+  background:var(--white);
+  padding:36px 24px;
+  text-align:center;
+  border-bottom:1px solid var(--border);
+}
+.body-section p{
+  max-width:560px;
+  margin:0 auto;
+  font-size:15px;
+  color:var(--text2);
+  line-height:1.7;
+}
 
 /* ===== MAIN CONTENT ===== */
 .main{
@@ -352,20 +367,25 @@ input.invalid,select.invalid,textarea.invalid{border-color:#DC2626}
 
 <!-- HEADER -->
 <div class="header">
-  <div class="header-logo">Investment<span>Guide</span> AU</div>
+  <div class="header-logo">Prop<span>Xcel</span></div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">Free Resource — Australia</div>
-  <h1 class="hero-title">Master Your Investment<br>Property <span>Cash Flow & Exit</span></h1>
-  <p class="hero-sub">A complete modelling guide for Australian property investors — cash flow forecasts, tax breakdowns, capital growth and exit strategy in one place.</p>
+  <div class="hero-badge">Free Guide — Australia</div>
+  <h1 class="hero-title">Stop Guessing.<br>Start Investing <span>with Confidence.</span></h1>
+  <p class="hero-sub">Download the free PropXcel Property Investment Guide — the exact framework smart Australian investors use to model cash flow, growth, and exit strategies.</p>
   <div class="hero-bullets">
-    <div class="hero-bullet">Cash Flow Forecast</div>
-    <div class="hero-bullet">Tax & Depreciation</div>
-    <div class="hero-bullet">Exit Strategy Model</div>
-    <div class="hero-bullet">IRR & NPV Metrics</div>
+    <div class="hero-bullet">The #1 mistake investors make before signing</div>
+    <div class="hero-bullet">A formula that reveals if a property makes money</div>
+    <div class="hero-bullet">The exit strategy most investors ignore</div>
   </div>
+</div>
+
+<!-- BODY -->
+<div class="body-section">
+  <p>Most people jump into property without ever running the numbers properly. This guide changes that.</p>
+  <p style="margin-top:10px">Inside, you'll discover the step-by-step system we use to evaluate every investment — so you can make decisions based on data, not emotion.</p>
 </div>
 
 <!-- MAIN -->
@@ -376,8 +396,8 @@ input.invalid,select.invalid,textarea.invalid{border-color:#DC2626}
     <div class="guide-card">
       <div class="guide-cover">
         <div class="guide-icon">📊</div>
-        <div class="guide-cover-title">Investment Property Guide</div>
-        <div class="guide-cover-sub">Cash Flow &amp; Exit Modelling — Australia</div>
+        <div class="guide-cover-title">PropXcel Property Investment Guide</div>
+        <div class="guide-cover-sub">Cash Flow, Growth &amp; Exit Strategies — Australia</div>
       </div>
       <div class="guide-free">
         <span style="font-size:20px">🎁</span>
@@ -399,8 +419,8 @@ input.invalid,select.invalid,textarea.invalid{border-color:#DC2626}
   <div class="form-col">
     <div class="form-card">
       <div id="form-area">
-        <div class="form-title">Get Your Free Guide</div>
-        <div class="form-sub">Fill in your details below — we'll send the guide directly to your WhatsApp.</div>
+        <div class="form-title">Get Instant Access</div>
+        <div class="form-sub">Enter your details below to get instant access — it's completely free.</div>
 
         <form id="lead-form" novalidate>
 
@@ -453,7 +473,7 @@ input.invalid,select.invalid,textarea.invalid{border-color:#DC2626}
           </div>
 
           <button type="submit" class="btn-submit" id="submit-btn">
-            Send Me The Guide →
+            Download My Free Guide →
           </button>
           <div class="form-privacy">🔒 Your details are secure and will never be shared with third parties.</div>
 
@@ -464,7 +484,7 @@ input.invalid,select.invalid,textarea.invalid{border-color:#DC2626}
       <div class="success-state" id="success-state">
         <div class="success-icon">✅</div>
         <div class="success-title">You're all set!</div>
-        <div class="success-sub">Your Investment Property Guide is on its way to your WhatsApp. Check your messages in the next few minutes.</div>
+        <div class="success-sub">Your PropXcel Property Investment Guide is on its way to your WhatsApp. Check your messages in the next few minutes.</div>
       </div>
 
     </div>
@@ -474,7 +494,7 @@ input.invalid,select.invalid,textarea.invalid{border-color:#DC2626}
 
 <!-- FOOTER -->
 <div class="footer">
-  &copy; 2026 InvestmentGuide AU — <a href="#">Privacy Policy</a> · Your information is handled securely and never sold.
+  &copy; 2026 PropXcel — <a href="#">Privacy Policy</a> · Your information is handled securely and never sold.
 </div>
 
 <script>
@@ -573,12 +593,12 @@ document.getElementById('lead-form').addEventListener('submit', async function(e
       document.getElementById('success-state').style.display = 'block';
     } else {
       btn.disabled = false;
-      btn.textContent = 'Send Me The Guide →';
+      btn.textContent = 'Download My Free Guide →';
       alert('Something went wrong. Please try again in a moment.');
     }
   } catch(err) {
     btn.disabled = false;
-    btn.textContent = 'Send Me The Guide →';
+    btn.textContent = 'Download My Free Guide →';
     alert('Connection error. Please check your internet and try again.');
   }
 });
