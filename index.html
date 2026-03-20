@@ -122,13 +122,12 @@ body{
   width:100%;
   margin:0 auto;
   padding:40px 20px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:32px;
+  display:flex;
+  justify-content:center;
   align-items:start;
 }
 @media(max-width:700px){
-  .main{grid-template-columns:1fr;padding:24px 16px}
+  .main{padding:24px 16px}
 }
 
 /* ===== GUIDE PREVIEW ===== */
@@ -221,7 +220,7 @@ body{
 }
 
 /* ===== FORM COL ===== */
-.form-col{}
+.form-col{width:100%;max-width:480px}
 .form-card{
   background:var(--white);
   border-radius:var(--radius);
@@ -367,8 +366,7 @@ input.invalid,select.invalid,textarea.invalid{border-color:#DC2626}
 
 <!-- HEADER -->
 <div class="header">
-  <img src="logo.png" alt="PropXcel" style="height:42px;margin-right:10px">
-  <div class="header-logo">Prop<span>Xcel</span></div>
+  <img src="logo.png" alt="PropXcel" style="height:56px">
 </div>
 
 <!-- HERO -->
@@ -390,21 +388,6 @@ input.invalid,select.invalid,textarea.invalid{border-color:#DC2626}
 
 <!-- MAIN -->
 <div class="main">
-
-  <!-- GUIDE PREVIEW -->
-  <div class="guide-col">
-    <div class="guide-card">
-      <div class="guide-cover">
-        <div class="guide-icon">📊</div>
-        <div class="guide-cover-title">PropXcel Property Investment Guide</div>
-        <div class="guide-cover-sub">Cash Flow, Growth &amp; Exit Strategies — Australia</div>
-      </div>
-      <div class="guide-free">
-        <span style="font-size:20px">🎁</span>
-        <span>100% Free — Instant delivery via WhatsApp</span>
-      </div>
-    </div>
-  </div>
 
   <!-- FORM -->
   <div class="form-col">
