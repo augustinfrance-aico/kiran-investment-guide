@@ -436,7 +436,7 @@ input.invalid,select.invalid,textarea.invalid{border-color:#DC2626}
           </div>
 
           <div class="form-group">
-            <div class="consent-box" onclick="toggleConsent()">
+            <div class="consent-box" onclick="toggleConsent(event)">
               <input type="checkbox" id="consent" name="consent" required>
               <div class="consent-text">
                 <strong>I agree to receive my guide via WhatsApp.</strong><br>
@@ -473,7 +473,8 @@ input.invalid,select.invalid,textarea.invalid{border-color:#DC2626}
 
 <script>
 // === CONSENT TOGGLE ===
-function toggleConsent() {
+function toggleConsent(e) {
+  if (e.target.tagName === 'INPUT') return;
   const cb = document.getElementById('consent');
   cb.checked = !cb.checked;
 }
