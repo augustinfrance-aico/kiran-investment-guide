@@ -360,6 +360,77 @@ input.invalid,select.invalid,textarea.invalid{border-color:#DC2626}
   color:rgba(255,255,255,0.45);
 }
 .footer a{color:rgba(255,255,255,0.6);text-decoration:none}
+
+/* ===== COMPARISON TABLE ===== */
+.compare-section{
+  background:var(--white);
+  padding:40px 24px;
+  border-bottom:1px solid var(--border);
+}
+.compare-title{
+  text-align:center;
+  font-size:22px;
+  font-weight:800;
+  color:var(--navy);
+  margin-bottom:6px;
+}
+.compare-sub{
+  text-align:center;
+  font-size:14px;
+  color:var(--text2);
+  margin-bottom:28px;
+}
+.compare-table{
+  max-width:700px;
+  margin:0 auto;
+  width:100%;
+  border-collapse:collapse;
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+.compare-table th{
+  padding:14px 20px;
+  font-size:13px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.04em;
+}
+.compare-table th:first-child{
+  background:#FEF2F2;
+  color:#DC2626;
+  text-align:left;
+}
+.compare-table th:last-child{
+  background:#ECFDF5;
+  color:#16A34A;
+  text-align:left;
+}
+.compare-table td{
+  padding:12px 20px;
+  font-size:14px;
+  line-height:1.5;
+  border-top:1px solid var(--border);
+  vertical-align:top;
+}
+.compare-table td:first-child{
+  color:#9B1C1C;
+  background:#FFFBFB;
+}
+.compare-table td:last-child{
+  color:#065F46;
+  background:#F7FDFB;
+}
+.compare-table td::before{
+  display:inline-block;
+  margin-right:6px;
+  font-size:13px;
+}
+.compare-table td:first-child::before{content:'✗';color:#DC2626;}
+.compare-table td:last-child::before{content:'✓';color:#16A34A;}
+@media(max-width:600px){
+  .compare-table td,.compare-table th{padding:10px 12px;font-size:13px;}
+}
 </style>
 </head>
 <body>
@@ -384,6 +455,42 @@ input.invalid,select.invalid,textarea.invalid{border-color:#DC2626}
 <div class="body-section">
   <p>Most people jump into property without ever running the numbers properly.<br>This guide changes that.</p>
   <p style="margin-top:10px">Inside, you'll discover the step-by-step system we use to evaluate every investment — so you can make decisions based on data, not emotion.</p>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="compare-section">
+  <div class="compare-title">The PropXcel Difference</div>
+  <div class="compare-sub">See how our framework stacks up against the most common investor mistakes.</div>
+  <table class="compare-table">
+    <tr>
+      <th>What Most Investors Do</th>
+      <th>The PropXcel Framework</th>
+    </tr>
+    <tr>
+      <td>Buy based on gut feeling or hype</td>
+      <td>Data-driven analysis of every property</td>
+    </tr>
+    <tr>
+      <td>Ignore cash flow until it's too late</td>
+      <td>Model exact quarterly cash flow before buying</td>
+    </tr>
+    <tr>
+      <td>No exit strategy planned</td>
+      <td>Exit strategy mapped from day one (sale + CGT)</td>
+    </tr>
+    <tr>
+      <td>Overlook tax implications</td>
+      <td>Full tax modelling built into every decision</td>
+    </tr>
+    <tr>
+      <td>Chase capital growth alone</td>
+      <td>Balance yield, growth, and risk across the portfolio</td>
+    </tr>
+    <tr>
+      <td>Hope for the best</td>
+      <td>15-minute strategy review to build a clear plan</td>
+    </tr>
+  </table>
 </div>
 
 <!-- MAIN -->
