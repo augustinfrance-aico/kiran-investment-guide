@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PropXcel System Documentation</title>
+<style>
+/* ===== VARIABLES ===== */
+:root {
+  --bg: #FFFFFF;
+  --bg2: #F8F9FB;
+  --bg3: #F0F2F5;
+  --text: #1A1A2E;
+  --text2: #5A6478;
+  --text3: #8B95A5;
+  --accent: #1A5CFF;
+  --accent2: #0B1F3A;
+  --gold: #C8A94A;
+  --green: #16A34A;
+  --green-bg: #ECFDF5;
+  --red: #DC2626;
+  --red-bg: #FEF2F2;
+  --orange: #EA580C;
+  --orange-bg: #FFF7ED;
+  --border: #E5E7EB;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow2: 0 4px 16px rgba(0,0,0,0.08);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  --flow-line: #D1D5DB;
+  --code-bg: #F3F4F6;
+}
+
+[data-theme="dark"] {
+  --bg: #0F1117;
+  --bg2: #1A1D27;
+  --bg3: #242836;
+  --text: #E8EAED;
+  --text2: #9BA3B5;
+  --text3: #6B7280;
+  --accent: #4D8BFF;
+  --accent2: #8BB4FF;
+  --border: #2D3348;
+  --shadow: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow2: 0 4px 16px rgba(0,0,0,0.4);
+  --green-bg: #052E16;
+  --red-bg: #450A0A;
+  --orange-bg: #431407;
+  --flow-line: #4B5563;
+  --code-bg: #1E2130;
+}
+
+/* ===== RESET ===== */
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ===== NAVIGATION ===== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  padding: 24px 0;
+  overflow-y: auto;
+  z-index: 100;
+  transition: background 0.3s, border-color 0.3s;
+}
+.nav-logo {
+  padding: 0 24px 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.nav-logo h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent2);
+  letter-spacing: -0.3px;
+}
+[data-theme="dark"] .nav-logo h2 { color: var(--accent2); color: #fff; }
+.nav-logo span { color: var(--gold); }
+.nav-logo p { font-size: 11px; color: var(--text3); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+.nav-section { padding: 8px 24px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-top: 8px; }
+.nav a {
+  display: block;
+  padding: 8px 24px;
+  font-size: 13px;
+  color: var(--text2);
+  text-decoration: none;
+  transition: all 0.15s;
+  border-left: 3px solid transparent;
+}
+.nav a:hover { background: var(--bg3); color: var(--text); border-left-color: var(--accent); }
+.nav a.active { background: var(--bg3); color: var(--accent); border-left-color: var(--accent); font-weight: 500; }
+
+/* ===== MAIN ===== */
+.main {
+  margin-left: 260px;
+  min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 50;
+  transition: background 0.3s, border-color 0.3s;
+  backdrop-filter: blur(8px);
+}
+.header-title { font-size: 14px; color: var(--text2); }
+.header-title strong { color: var(--text); font-weight: 600; }
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px;
+  cursor: pointer;
+}
+.theme-btn {
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text2);
+  transition: all 0.2s;
+}
+.theme-btn.active { background: var(--bg); color: var(--text); box-shadow: var(--shadow); }
+
+/* ===== CONTENT ===== */
+.content { padding: 40px; max-width: 900px; }
+.section { margin-bottom: 56px; scroll-margin-top: 80px; }
+.section h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+.section .subtitle {
+  font-size: 15px;
+  color: var(--text2);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.section h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 32px 0 16px;
+  letter-spacing: -0.3px;
+}
+.section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 24px 0 12px;
+}
+.section p { font-size: 14px; color: var(--text2); margin-bottom: 16px; }
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: background 0.3s, border-color 0.3s;
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.card-icon.blue { background: #EBF2FF; color: var(--accent); }
+.card-icon.green { background: var(--green-bg); color: var(--green); }
+.card-icon.gold { background: #FEF9E7; color: var(--gold); }
+.card-icon.purple { background: #F3E8FF; color: #7C3AED; }
+.card-icon.orange { background: var(--orange-bg); color: var(--orange); }
+[data-theme="dark"] .card-icon.blue { background: #1A2744; }
+[data-theme="dark"] .card-icon.green { background: #0A2618; }
+[data-theme="dark"] .card-icon.gold { background: #2A2410; }
+[data-theme="dark"] .card-icon.purple { background: #1E1038; }
+[data-theme="dark"] .card-icon.orange { background: #2A1508; }
+.card-title { font-size: 15px; font-weight: 600; color: var(--text); }
+.card-subtitle { font-size: 12px; color: var(--text3); }
+.card p { font-size: 13px; color: var(--text2); margin: 0; line-height: 1.7; }
+
+/* ===== FLOW DIAGRAM ===== */
+.flow { display: flex; flex-direction: column; gap: 0; margin: 24px 0; }
+.flow-step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.flow-line-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40px;
+  flex-shrink: 0;
+}
+.flow-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  flex-shrink: 0;
+  z-index: 1;
+}
+.flow-dot.blue { background: var(--accent); color: #fff; }
+.flow-dot.green { background: var(--green); color: #fff; }
+.flow-dot.gold { background: var(--gold); color: #fff; }
+.flow-dot.purple { background: #7C3AED; color: #fff; }
+.flow-connector {
+  width: 2px;
+  height: 24px;
+  background: var(--flow-line);
+}
+.flow-content {
+  flex: 1;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin-bottom: 8px;
+  transition: background 0.3s, border-color 0.3s;
+}
+.flow-content h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.flow-content p { font-size: 13px; color: var(--text2); margin: 0; }
+.flow-content .tag { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 4px; margin-top: 6px; }
+.tag.immediate { background: var(--green-bg); color: var(--green); }
+.tag.delay { background: var(--orange-bg); color: var(--orange); }
+.tag.check { background: #F3E8FF; color: #7C3AED; }
+[data-theme="dark"] .tag.check { background: #1E1038; }
+
+/* ===== TABLE ===== */
+.table-wrap { overflow-x: auto; margin: 16px 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+th {
+  text-align: left;
+  padding: 10px 16px;
+  background: var(--bg3);
+  color: var(--text3);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border);
+}
+td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text2);
+}
+tr:last-child td { border-bottom: none; }
+td code {
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+}
+
+/* ===== CODE BLOCK ===== */
+.code-block {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text);
+  overflow-x: auto;
+  margin: 12px 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* ===== BADGE ===== */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.badge.live { background: var(--green-bg); color: var(--green); }
+.badge.pending { background: var(--orange-bg); color: var(--orange); }
+
+/* ===== ALERT ===== */
+.alert {
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-size: 13px;
+  line-height: 1.6;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.alert-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.alert.info { background: #EBF2FF; color: #1E40AF; border: 1px solid #BFDBFE; }
+.alert.warning { background: var(--orange-bg); color: #9A3412; border: 1px solid #FED7AA; }
+.alert.success { background: var(--green-bg); color: #166534; border: 1px solid #BBF7D0; }
+[data-theme="dark"] .alert.info { background: #1A2744; color: #93C5FD; border-color: #1E3A5F; }
+[data-theme="dark"] .alert.warning { background: #2A1508; color: #FDBA74; border-color: #431407; }
+[data-theme="dark"] .alert.success { background: #0A2618; color: #86EFAC; border-color: #052E16; }
+
+/* ===== GRID ===== */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+/* ===== PHONE MOCKUP ===== */
+.phone-mock {
+  width: 260px;
+  background: #E5DDD5;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 4px solid var(--border);
+  margin: 16px auto;
+}
+[data-theme="dark"] .phone-mock { border-color: #3B4252; }
+.phone-top { background: #075E54; padding: 10px 14px; display: flex; align-items: center; gap: 8px; }
+.phone-avatar { width: 28px; height: 28px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: #fff; }
+.phone-name { font-size: 12px; font-weight: 500; color: #fff; }
+.phone-body { padding: 12px; min-height: 180px; }
+.wa-bubble { background: #fff; border-radius: 4px 12px 12px 12px; padding: 10px 12px; font-size: 11px; line-height: 1.5; color: #111; margin-bottom: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+.wa-bubble p { margin: 0 0 4px; color: #111; font-size: 11px; }
+.wa-btn { display: block; background: #fff; border-top: 1px solid #e8e8e8; text-align: center; padding: 8px; font-size: 11px; font-weight: 500; color: #128C7E; border-radius: 0 0 12px 12px; }
+.wa-time { font-size: 9px; color: #999; text-align: right; margin-top: 3px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .nav { display: none; }
+  .main { margin-left: 0; }
+  .content { padding: 24px; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ===== PRINT ===== */
+@media print {
+  .nav, .header, .theme-toggle { display: none; }
+  .main { margin-left: 0; }
+  .content { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <h2>Prop<span>Xcel</span></h2>
+    <p>System Documentation</p>
+  </div>
+  <div class="nav-section">Overview</div>
+  <a href="#overview" class="active">How It Works</a>
+  <a href="#flow">Complete Flow</a>
+  <div class="nav-section">Components</div>
+  <a href="#landing">Landing Page</a>
+  <a href="#sheets">Google Sheets</a>
+  <a href="#whatsapp">WhatsApp Messages</a>
+  <a href="#calendly">Calendly Integration</a>
+  <a href="#qr">QR Code</a>
+  <div class="nav-section">Technical</div>
+  <a href="#templates">WhatsApp Templates</a>
+  <a href="#workflow">n8n Workflow</a>
+  <a href="#credentials">Credentials</a>
+  <div class="nav-section">Operations</div>
+  <a href="#changes">How to Make Changes</a>
+  <a href="#troubleshoot">Troubleshooting</a>
+  <a href="#urls">All URLs & Links</a>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-title"><strong>PropXcel</strong> &mdash; QR to WhatsApp Investment Guide Funnel</div>
+    <div class="theme-toggle">
+      <button class="theme-btn active" onclick="setTheme('light')" id="btn-light">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark')" id="btn-dark">Dark</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ===== OVERVIEW ===== -->
+    <div class="section" id="overview">
+      <h1>How Your System Works</h1>
+      <p class="subtitle">Your PropXcel funnel automatically captures leads, delivers your investment guide via WhatsApp, and follows up with a 3-message drip sequence to book strategy review calls. Everything runs on autopilot.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon blue">1</div>
+            <div><div class="card-title">Capture</div><div class="card-subtitle">Lead fills the form</div></div>
+          </div>
+          <p>A visitor scans your QR code or visits your landing page. They enter their name, email, and phone number. The data is instantly saved to your Google Sheet.</p>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon green">2</div>
+            <div><div class="card-title">Deliver</div><div class="card-subtitle">Guide sent via WhatsApp</div></div>
+          </div>
+          <p>Within seconds, they receive your Investment Guide on WhatsApp with a download button. Two minutes later, they get a strategy review invitation.</p>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon gold">3</div>
+            <div><div class="card-title">Convert</div><div class="card-subtitle">Automated follow-ups</div></div>
+          </div>
+          <p>If they don't book a call, they receive a follow-up after 24 hours and a final message after 72 hours. If they book, follow-ups stop automatically.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== COMPLETE FLOW ===== -->
+    <div class="section" id="flow">
+      <h2>Complete Flow &mdash; Step by Step</h2>
+      <p>Here's exactly what happens from the moment someone scans your QR code to the final follow-up message.</p>
+
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-line-wrap"><div class="flow-dot blue">1</div><div class="flow-connector"></div></div>
+          <div class="flow-content">
+            <h4>Visitor scans QR code or visits landing page</h4>
+            <p>They arrive at <strong>propxcel.com.au/guide</strong> and see the form to download the free investment guide.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line-wrap"><div class="flow-dot blue">2</div><div class="flow-connector"></div></div>
+          <div class="flow-content">
+            <h4>They fill in the form and submit</h4>
+            <p>Name, email, phone number (with country code), and optional message. They tick the WhatsApp consent checkbox.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line-wrap"><div class="flow-dot green">3</div><div class="flow-connector"></div></div>
+          <div class="flow-content">
+            <h4>Data saved to Google Sheets</h4>
+            <p>The lead's information is instantly added as a new row in your Google Sheet. You can see all leads there in real-time.</p>
+            <span class="tag immediate">Instant</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line-wrap"><div class="flow-dot green">4</div><div class="flow-connector"></div></div>
+          <div class="flow-content">
+            <h4>Message 1 &mdash; Investment Guide delivered</h4>
+            <p>"Hi [Name], it's Jaspreet from PropXcel. Here is your Investment Guide..." with a <strong>Download Your Guide</strong> button linking to the PDF.</p>
+            <span class="tag immediate">Instant</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line-wrap"><div class="flow-dot gold">5</div><div class="flow-connector"></div></div>
+          <div class="flow-content">
+            <h4>Message 2 &mdash; Strategy Review invitation</h4>
+            <p>"We're opening a limited number of 15-minute strategy sessions..." with a <strong>Book Your Strategy Review</strong> button linking to your Calendly.</p>
+            <span class="tag delay">After 2 minutes</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line-wrap"><div class="flow-dot purple">6</div><div class="flow-connector"></div></div>
+          <div class="flow-content">
+            <h4>Calendly check &mdash; Did they book?</h4>
+            <p>The system checks your Calendly to see if this person has already booked a consultation. If yes, no more messages are sent.</p>
+            <span class="tag check">Smart check</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line-wrap"><div class="flow-dot gold">7</div><div class="flow-connector"></div></div>
+          <div class="flow-content">
+            <h4>Message 3 &mdash; Follow-up nudge</h4>
+            <p>"Just circling back &mdash; we still have a spot reserved for you..." with a <strong>Claim My Spot</strong> button. Only sent if they haven't booked.</p>
+            <span class="tag delay">After 24 hours</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line-wrap"><div class="flow-dot purple">8</div><div class="flow-connector"></div></div>
+          <div class="flow-content">
+            <h4>Calendly check &mdash; Second booking check</h4>
+            <p>Another check before the final message. If they booked after the follow-up, the sequence stops here.</p>
+            <span class="tag check">Smart check</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line-wrap"><div class="flow-dot gold">9</div><div class="flow-connector"></div></div>
+          <div class="flow-content">
+            <h4>Message 4 &mdash; Final close</h4>
+            <p>"This is our last message on this. We're closing this batch of strategy sessions today..." with a <strong>Book Before It Closes</strong> button.</p>
+            <span class="tag delay">After 72 hours (3 days)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== LANDING PAGE ===== -->
+    <div class="section" id="landing">
+      <h2>Landing Page</h2>
+      <p>Your landing page is hosted on your own domain. It's a single HTML file &mdash; no database, no server-side code, no maintenance needed.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon blue">&#127760;</div>
+          <div><div class="card-title">propxcel.com.au/guide</div><div class="card-subtitle">Hosted on VentraIP</div></div>
+        </div>
+        <p>The page includes a lead capture form with validation, PropXcel branding (navy + gold), and a success message after submission.</p>
+      </div>
+
+      <h3>What the form collects</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Field</th><th>Required</th><th>Details</th></tr>
+          <tr><td>Full Name</td><td>Yes</td><td>Minimum 2 characters</td></tr>
+          <tr><td>Email</td><td>Yes</td><td>Standard email validation</td></tr>
+          <tr><td>Phone</td><td>Yes</td><td>With country code selector (AU default). Minimum 6 digits.</td></tr>
+          <tr><td>Message</td><td>No</td><td>Optional free text</td></tr>
+          <tr><td>WhatsApp Consent</td><td>Yes</td><td>Checkbox &mdash; must agree to receive WhatsApp messages</td></tr>
+        </table>
+      </div>
+
+      <div class="alert info">
+        <div class="alert-icon">&#128161;</div>
+        <div>The landing page files are in the <code>/guide/</code> folder on your VentraIP hosting. To edit text or design, modify <code>index.html</code> in File Manager.</div>
+      </div>
+    </div>
+
+    <!-- ===== GOOGLE SHEETS ===== -->
+    <div class="section" id="sheets">
+      <h2>Google Sheets &mdash; Your Lead Database</h2>
+      <p>Every form submission is automatically added as a new row. This is your real-time lead database.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon green">&#128202;</div>
+          <div><div class="card-title">Lead Capture Sheet</div><div class="card-subtitle">Auto-updated in real-time</div></div>
+        </div>
+      </div>
+
+      <h3>Columns</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Column</th><th>Example</th><th>Description</th></tr>
+          <tr><td>Name</td><td>James Wilson</td><td>Full name from form</td></tr>
+          <tr><td>Email</td><td>james@email.com</td><td>Email address</td></tr>
+          <tr><td>Phone</td><td>+61412345678</td><td>Phone with country code</td></tr>
+          <tr><td>Message</td><td>Interested in NSW</td><td>Optional message</td></tr>
+          <tr><td>Date</td><td>2026-04-01T14:30:00Z</td><td>When they submitted</td></tr>
+          <tr><td>Consent</td><td>true</td><td>WhatsApp consent</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===== WHATSAPP MESSAGES ===== -->
+    <div class="section" id="whatsapp">
+      <h2>WhatsApp Messages</h2>
+      <p>Your leads receive 4 messages automatically. Each message has a button that links to your booking page.</p>
+
+      <div class="grid-2">
+        <div>
+          <h3>Message 1 &mdash; Guide Delivery</h3>
+          <div class="phone-mock">
+            <div class="phone-top">
+              <div class="phone-avatar">PX</div>
+              <div class="phone-name">PropXcel</div>
+            </div>
+            <div class="phone-body">
+              <div class="wa-bubble">
+                <p>Hi James, it's Jaspreet from PropXcel.</p>
+                <p>Here is your Investment Guide. It outlines how we identify undervalued properties across Australia that can generate strong early equity growth.</p>
+                <p style="color:#555;font-size:10px;margin-top:6px;">&mdash; The PropXcel Team</p>
+                <div class="wa-time">09:41 &#10003;&#10003;</div>
+              </div>
+              <div class="wa-btn">&#128196; Download Your Guide</div>
+            </div>
+          </div>
+          <p style="text-align:center;font-size:12px;color:var(--text3);">Sent immediately &bull; Links to PDF</p>
+        </div>
+        <div>
+          <h3>Message 2 &mdash; Strategy Review</h3>
+          <div class="phone-mock">
+            <div class="phone-top">
+              <div class="phone-avatar">PX</div>
+              <div class="phone-name">PropXcel</div>
+            </div>
+            <div class="phone-body">
+              <div class="wa-bubble">
+                <p>Hi James,</p>
+                <p>We're opening a limited number of <strong>15-minute strategy sessions</strong> for investors looking to secure undervalued property opportunities across Australia.</p>
+                <p>Availability is intentionally capped. Spots fill fast.</p>
+                <p style="color:#555;font-size:10px;margin-top:6px;">&mdash; The PropXcel Team</p>
+                <div class="wa-time">09:43 &#10003;&#10003;</div>
+              </div>
+              <div class="wa-btn">&#128197; Book Your Strategy Review</div>
+            </div>
+          </div>
+          <p style="text-align:center;font-size:12px;color:var(--text3);">Sent after 2 minutes &bull; Links to Calendly</p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:24px;">
+        <div>
+          <h3>Message 3 &mdash; Follow-up (24h)</h3>
+          <div class="phone-mock">
+            <div class="phone-top">
+              <div class="phone-avatar">PX</div>
+              <div class="phone-name">PropXcel</div>
+            </div>
+            <div class="phone-body">
+              <div class="wa-bubble">
+                <p>Hi James,</p>
+                <p>Just circling back &mdash; we still have a spot reserved for you for a <strong>15-minute strategy review</strong>.</p>
+                <p>If you're serious about finding undervalued opportunities in Australia's current market, this is worth 15 minutes of your time.</p>
+                <p style="color:#555;font-size:10px;margin-top:6px;">&mdash; The PropXcel Team</p>
+                <div class="wa-time">09:41 &#10003;&#10003;</div>
+              </div>
+              <div class="wa-btn">&#128197; Claim My Spot</div>
+            </div>
+          </div>
+          <p style="text-align:center;font-size:12px;color:var(--text3);">Only if not booked &bull; Links to Calendly</p>
+        </div>
+        <div>
+          <h3>Message 4 &mdash; Final Close (72h)</h3>
+          <div class="phone-mock">
+            <div class="phone-top">
+              <div class="phone-avatar">PX</div>
+              <div class="phone-name">PropXcel</div>
+            </div>
+            <div class="phone-body">
+              <div class="wa-bubble">
+                <p>Hi James, this is our last message on this.</p>
+                <p>We're closing this batch of strategy sessions today. If you'd like to be considered, the link below takes less than 2 minutes to book.</p>
+                <p>If the timing isn't right, no hard feelings.</p>
+                <p style="color:#555;font-size:10px;margin-top:6px;">&mdash; The PropXcel Team</p>
+                <div class="wa-time">09:41 &#10003;&#10003;</div>
+              </div>
+              <div class="wa-btn">&#128197; Book Before It Closes</div>
+            </div>
+          </div>
+          <p style="text-align:center;font-size:12px;color:var(--text3);">Only if not booked &bull; Links to Calendly</p>
+        </div>
+      </div>
+
+      <div class="alert success" style="margin-top:24px;">
+        <div class="alert-icon">&#10003;</div>
+        <div><strong>Smart follow-ups:</strong> Messages 3 and 4 are only sent if the lead has NOT booked a consultation on Calendly. If they book after Message 2, the system stops automatically.</div>
+      </div>
+    </div>
+
+    <!-- ===== CALENDLY ===== -->
+    <div class="section" id="calendly">
+      <h2>Calendly Integration</h2>
+      <p>All WhatsApp buttons link to your Calendly booking page. The system checks Calendly before sending follow-up messages.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon purple">&#128197;</div>
+          <div><div class="card-title">propxcel.com.au/book</div><div class="card-subtitle">Redirects to calendly.com/propxcel-info/15min</div></div>
+        </div>
+        <p>When someone books a 15-minute Initial Consultation, the system detects it and stops sending follow-up messages to that person.</p>
+      </div>
+
+      <h3>How the smart check works</h3>
+      <p>Before sending Message 3 (24h) and Message 4 (72h), the system queries the Calendly API using the lead's email address. If a booking is found, the message is skipped. This means:</p>
+      <ul style="margin:12px 0 12px 20px;font-size:14px;color:var(--text2);line-height:2;">
+        <li>Lead books after Message 1 &rarr; Messages 3 and 4 are NOT sent</li>
+        <li>Lead books after Message 3 &rarr; Message 4 is NOT sent</li>
+        <li>Lead never books &rarr; All 4 messages are sent</li>
+      </ul>
+    </div>
+
+    <!-- ===== QR CODE ===== -->
+    <div class="section" id="qr">
+      <h2>QR Code</h2>
+      <p>Your QR code links directly to the landing page. Print it on business cards, flyers, brochures, or event banners.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon blue">&#9641;</div>
+          <div><div class="card-title">Scans to propxcel.com.au/guide</div><div class="card-subtitle">Available in PNG and SVG</div></div>
+        </div>
+        <p>The QR code is available in two formats: PNG (for screens and print) and SVG (for scaling to any size without losing quality).</p>
+      </div>
+
+      <div class="alert info">
+        <div class="alert-icon">&#128161;</div>
+        <div>If you change the landing page URL, you'll need a new QR code. The QR files are in the <code>/guide/</code> folder on your hosting.</div>
+      </div>
+    </div>
+
+    <!-- ===== TEMPLATES ===== -->
+    <div class="section" id="templates">
+      <h2>WhatsApp Templates</h2>
+      <p>These are the Meta-approved message templates used by the automation. Template changes require Meta re-approval (24-48 hours).</p>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>Template Name</th><th>Category</th><th>Status</th><th>Button</th><th>Button URL</th></tr>
+          <tr><td><code>propxcel_guide_delivery_v5</code></td><td>Marketing</td><td><span class="badge live">Approved</span></td><td>Download Your Guide</td><td>propxcel.com.au/guide/...pdf</td></tr>
+          <tr><td><code>propxcel_strategy_review_v4</code></td><td>Marketing</td><td><span class="badge live">Approved</span></td><td>Book Your Strategy Review</td><td>propxcel.com.au/book</td></tr>
+          <tr><td><code>propxcel_followup_v4</code></td><td>Marketing</td><td><span class="badge live">Approved</span></td><td>Claim My Spot</td><td>propxcel.com.au/book</td></tr>
+          <tr><td><code>propxcel_final_close_v4</code></td><td>Marketing</td><td><span class="badge live">Approved</span></td><td>Book Before It Closes</td><td>propxcel.com.au/book</td></tr>
+        </table>
+      </div>
+
+      <div class="alert warning">
+        <div class="alert-icon">&#9888;</div>
+        <div><strong>Important:</strong> Do not modify template text directly in Meta. If you need changes, create a new template version and submit it for approval. Editing an approved template resets it to "Pending".</div>
+      </div>
+    </div>
+
+    <!-- ===== WORKFLOW ===== -->
+    <div class="section" id="workflow">
+      <h2>n8n Workflow</h2>
+      <p>The automation runs on n8n Cloud. It processes form submissions, saves data to Sheets, and sends WhatsApp messages with the correct timing.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon orange">&#9881;</div>
+          <div><div class="card-title">Kiran - PropXcel WhatsApp Drip (M3)</div><div class="card-subtitle">n8n Cloud &bull; Always active</div></div>
+        </div>
+      </div>
+
+      <h3>Workflow nodes</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>#</th><th>Node</th><th>What it does</th></tr>
+          <tr><td>1</td><td>Webhook</td><td>Receives form data from the landing page</td></tr>
+          <tr><td>2</td><td>Google Sheets</td><td>Appends lead data as a new row</td></tr>
+          <tr><td>3</td><td>WhatsApp Msg 1a</td><td>Sends guide PDF (immediate)</td></tr>
+          <tr><td>4</td><td>Wait 2 min</td><td>Pauses before strategy review message</td></tr>
+          <tr><td>5</td><td>WhatsApp Msg 1b</td><td>Sends strategy review invite</td></tr>
+          <tr><td>6</td><td>Wait 24h</td><td>Pauses before follow-up</td></tr>
+          <tr><td>7</td><td>Calendly Check</td><td>Checks if lead booked a consultation</td></tr>
+          <tr><td>8</td><td>IF Not Booked</td><td>Only continues if no booking found</td></tr>
+          <tr><td>9</td><td>WhatsApp Msg 2</td><td>Sends follow-up nudge</td></tr>
+          <tr><td>10</td><td>Wait 48h</td><td>Pauses before final close (72h total)</td></tr>
+          <tr><td>11</td><td>Calendly Check</td><td>Second booking check</td></tr>
+          <tr><td>12</td><td>IF Not Booked</td><td>Only continues if still no booking</td></tr>
+          <tr><td>13</td><td>WhatsApp Msg 3</td><td>Sends final close message</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===== CREDENTIALS ===== -->
+    <div class="section" id="credentials">
+      <h2>Credentials & Accounts</h2>
+      <p>These are the services and accounts that power your funnel.</p>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>Service</th><th>Purpose</th><th>Account</th></tr>
+          <tr><td>VentraIP</td><td>Landing page hosting</td><td>propxcel.com.au</td></tr>
+          <tr><td>WhatsApp Cloud API</td><td>Sending messages</td><td>+61 469 304 387 (PropXcel)</td></tr>
+          <tr><td>Meta Business Manager</td><td>WhatsApp templates</td><td>PropXcel Business</td></tr>
+          <tr><td>Google Sheets</td><td>Lead database</td><td>Connected via OAuth</td></tr>
+          <tr><td>n8n Cloud</td><td>Automation engine</td><td>augustin-aico.app.n8n.cloud</td></tr>
+          <tr><td>Calendly</td><td>Booking page</td><td>calendly.com/propxcel-info/15min</td></tr>
+        </table>
+      </div>
+
+      <div class="alert warning">
+        <div class="alert-icon">&#128274;</div>
+        <div><strong>Security:</strong> Never share API tokens publicly. The WhatsApp token and Calendly API key are stored securely in the n8n credentials vault.</div>
+      </div>
+    </div>
+
+    <!-- ===== HOW TO MAKE CHANGES ===== -->
+    <div class="section" id="changes">
+      <h2>How to Make Changes</h2>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon blue">&#9998;</div>
+          <div><div class="card-title">Change landing page text or design</div></div>
+        </div>
+        <p>Go to VentraIP &rarr; cPanel &rarr; File Manager &rarr; <code>public_html/guide/index.html</code>. Click Edit, make changes, and Save. Changes are live immediately.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon green">&#128172;</div>
+          <div><div class="card-title">Change WhatsApp message text</div></div>
+        </div>
+        <p>WhatsApp messages use Meta-approved templates. To change the text: create a new template in Meta Business Manager, wait for approval (24-48h), then update the template name in the n8n workflow.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon gold">&#9200;</div>
+          <div><div class="card-title">Change message timing</div></div>
+        </div>
+        <p>The delay between messages is set in the n8n workflow Wait nodes. Current settings: 2 minutes (Msg 2), 24 hours (Msg 3), 72 hours (Msg 4). These can be adjusted in n8n without needing Meta approval.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon purple">&#128196;</div>
+          <div><div class="card-title">Change the PDF guide</div></div>
+        </div>
+        <p>Upload the new PDF to VentraIP &rarr; <code>public_html/guide/</code> with the same filename (<code>PropXcel_Investment_Property_Guide.pdf</code>). If the filename changes, update the WhatsApp template too.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon orange">&#128279;</div>
+          <div><div class="card-title">Change the booking page URL</div></div>
+        </div>
+        <p>If you change from Calendly to another booking tool, you'll need new WhatsApp templates with the new button URL, plus update the Calendly check in the n8n workflow.</p>
+      </div>
+    </div>
+
+    <!-- ===== TROUBLESHOOTING ===== -->
+    <div class="section" id="troubleshoot">
+      <h2>Troubleshooting</h2>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon orange">&#10060;</div>
+          <div><div class="card-title">Lead says they didn't receive WhatsApp messages</div></div>
+        </div>
+        <p><strong>Check:</strong> Is the phone number correct (with country code)? Does the person have WhatsApp on that number? Ask them to search for "PropXcel" or "+61469304387" in their WhatsApp chats. WhatsApp may also limit marketing messages &mdash; a fresh number that hasn't received many messages will always work.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon orange">&#10060;</div>
+          <div><div class="card-title">Form submits but nothing happens</div></div>
+        </div>
+        <p><strong>Check:</strong> The n8n workflow must be active. Log into n8n Cloud and verify the workflow is toggled on (green). Also check the webhook URL in the landing page HTML matches the n8n webhook path.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon orange">&#10060;</div>
+          <div><div class="card-title">Leads not appearing in Google Sheets</div></div>
+        </div>
+        <p><strong>Check:</strong> The Google Sheets OAuth token may have expired. Log into n8n Cloud, go to Credentials, and reconnect the Google Sheets account. The sheet tab name must also match exactly (currently "Sheet1").</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon orange">&#10060;</div>
+          <div><div class="card-title">Follow-ups sent even after booking</div></div>
+        </div>
+        <p><strong>Check:</strong> The Calendly integration matches leads by email. If the lead used a different email on the form vs. Calendly, the system can't match them. Ensure the booking email matches the form email.</p>
+      </div>
+    </div>
+
+    <!-- ===== ALL URLS ===== -->
+    <div class="section" id="urls">
+      <h2>All URLs & Links</h2>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>What</th><th>URL</th></tr>
+          <tr><td>Landing Page</td><td><code>https://propxcel.com.au/guide/</code></td></tr>
+          <tr><td>PDF Guide</td><td><code>https://propxcel.com.au/guide/PropXcel_Investment_Property_Guide.pdf</code></td></tr>
+          <tr><td>Booking Page</td><td><code>https://propxcel.com.au/book</code></td></tr>
+          <tr><td>Google Sheet</td><td><code>docs.google.com/spreadsheets/d/14tAUyOfvRASdgNz5l2DLB2N3V_WQR5lD8Dns-9VTaXM</code></td></tr>
+          <tr><td>n8n Workflow</td><td><code>augustin-aico.app.n8n.cloud</code></td></tr>
+          <tr><td>WhatsApp Business</td><td><code>+61 469 304 387</code></td></tr>
+          <tr><td>Calendly</td><td><code>calendly.com/propxcel-info/15min</code></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="border-top:1px solid var(--border);padding:32px 0;margin-top:40px;text-align:center;">
+      <p style="font-size:12px;color:var(--text3);">PropXcel System Documentation &bull; Built by Augustin Diaz &bull; Last updated April 2026</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Theme toggle
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('btn-light').classList.toggle('active', theme === 'light');
+  document.getElementById('btn-dark').classList.toggle('active', theme === 'dark');
+  localStorage.setItem('theme', theme);
+}
+
+// Load saved theme
+const saved = localStorage.getItem('theme');
+if (saved) setTheme(saved);
+
+// Active nav highlight on scroll
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>
